@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+
+    <bean id="rockMusicBean"
+          class="ua.piskun.springcourse.RockMusic">
+    </bean>
+
+    <bean id="classicalMusicBean"
+          class="ua.piskun.springcourse.ClassicalMusic">
+    </bean>
+
+    <bean id="metalMusicBean"
+          class="ua.piskun.springcourse.MetalMusic">
+    </bean>
+
+    <bean id="musicPlayer"
+          class="ua.piskun.springcourse.MusicPlayer">
+        <property name="musicList">
+            <list>
+                <ref bean="rockMusicBean"/>
+                <ref bean="classicalMusicBean"/>
+                <ref bean="metalMusicBean"/>
+            </list>
+        </property>
+
+        <property name="name" value="${musicPlayer.name}"/>
+        <property name="volume" value="${musicPlayer.volume}"/>
+    </bean>
+
+</beans>
